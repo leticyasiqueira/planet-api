@@ -2,9 +2,9 @@ DROP TABLE planet IF EXISTS;
 create table planet 
 (
    id long not null AUTO_INCREMENT,
-   nome varchar(255) not null,
-   clima varchar(255) not null,
-   terreno varchar(255) not null,
-   qtdAparicao integer,
+   name varchar(255) not null,
+   climate varchar(255) not null,
+   terrain varchar(255) not null,
+   films integer,
    primary key(id)
 );
