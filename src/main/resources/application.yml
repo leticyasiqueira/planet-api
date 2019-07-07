@@ -1,0 +1,14 @@
+# Enabling H2 Console
+spring:
+  datasource:
+    url: jdbc:h2:mem:srca
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: H2
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+        ddl-auto: create-drop
