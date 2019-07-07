@@ -21,6 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.lsiqueira.planet.entity.Planet;
 import com.lsiqueira.planet.repository.PlanetRepository;
+import com.lsiqueira.planet.service.PlanetService;
 
 @RestController
 @RequestMapping("/planets")
@@ -29,8 +30,15 @@ public class PlanetController {
 	@Autowired
 	private PlanetRepository planetRepository;
 	
+	@Autowired
+	private PlanetService planetService;
+
+	
 	@PostMapping
-	public ResponseEntity<Planet> createPlanet(@RequestBody Planet planet) {
+	public ResponseEntity<Planet> createPlanet(@RequestBody Planet planet) throws Exception {
+		
+		planetService.validPlanet(planet.getName());
+		
 		Planet savedPlanet = planetRepository.save(planet);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
