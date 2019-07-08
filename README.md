@@ -7,17 +7,18 @@ O projeto tarta-se de uma API REST que permite o cadastro, a busca e a exclusão
 * Framework: Spring boot
 * Banco de dados: H2 embedded
 
-Recursos disponíveis para acesso via API:
+## Recursos disponíveis para acesso via API:
 * [**Informação**](#reference/recursos/info)
 * [**Planetas**](#reference/recursos/planets)
 
 ## Métodos
 Requisições para a API devem seguir os padrões:
-| Método | Descrição |
-|---|---|
-| `GET` | Retorna informações de um ou mais registros. |
-| `POST` | Utilizado para criar um novo registro. |
-| `DELETE` | Utilizado pata remover um registro. |
+
+| Método    | Descrição |
+|-----|-----|
+| `GET`     | Retorna informações de um ou mais registros. |
+| `POST`    | Utilizado para criar um novo registro. |
+| `DELETE ` | Utilizado pata remover um registro. |
 
 ## Principais Respostas
 
