@@ -50,11 +50,11 @@ As ações de `listar` permitem o envio dos seguintes parâmetros:
 + Request (application/json)
 
 + Response 200 (application/json)
-
+	 + Body
            {
-			  "versao": "1.0",
-			  "nome": "planets-api"
-			}
+			 "versao": "1.0",
+			 "nome": "planets-api"
+		   }
 
 			
 
@@ -82,3 +82,33 @@ As ações de `listar` permitem o envio dos seguintes parâmetros:
 + Response 201 (application/json)
     + header
            Location: Caminho para o recurso criado.
+           
+           
+           
+### Buscar por ID (Read) [GET /planets/{id}]
+
++ Parameters
+    + id (required, number, `1`) ... ID do planeta
+   
++ Request (application/json)
+
++ Response 200 (application/json)
+    + Body
+            {
+              "name": "Alderaan",
+              "climate": "temperate",
+              "terrain": "grasslands",
+              "films": 3
+            } 
+
++ Response 404 (application/json)
+  Quando o registro não for encontrado.
+    + Body
+
+           {
+			  "timestamp": "2019-07-08T19:17:12.758+0000",
+			  "status": 404,
+			  "error": "Not Found",
+			  "message": "Id não encontrado!",
+			  "path": "/planets/4"
+			}        
