@@ -139,7 +139,6 @@ As ações de `listar` permitem o envio dos seguintes parâmetros:
 + Response 404 (application/json)
 	 + Body
            {
-			 "timestamp": "2019-07-08T19:49:58.311+0000",
 			 "status": 404,
 			 "error": "Not Found",
 			 "message": "O planeta Alderaa não foi encontrado!",
@@ -155,16 +154,6 @@ As ações de `listar` permitem o envio dos seguintes parâmetros:
 
 + Response 204 (application/json)
 	No content.
-
-+ Response 200 (application/json)
-    + Body
-
-            {
-                "code": "200",
-                "msg": "Venda com código 317 excluída com sucesso!",
-                "obs": null,
-                "fields": null
-            }
  
 + Response 404 (application/json)
   Quando o registro não for encontrado.
