@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 public class Swapi {
 
 	public ResponseEntity<RequestWrapper> getPlanetByName(String nome) throws Exception {
-		
+
 		RestTemplate restTemplate = new RestTemplate();
 		HttpEntity<String> entity = new HttpEntity<String>(constructHeaders());
 		ResponseEntity<RequestWrapper> wrapper = null;
@@ -30,12 +30,12 @@ public class Swapi {
 		return wrapper;
 	}
 
-	
 	private HttpHeaders constructHeaders() {
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.USER_AGENT, "");
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		
+
 		return headers;
 	}
 }

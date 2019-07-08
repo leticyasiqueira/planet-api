@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -14,9 +15,16 @@ public class Planet {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
+	
+	@NotBlank(message = "{name.not.blank}")
 	private String name;
+	
+	@NotBlank(message = "{climate.not.blank}")
 	private String climate;
+	
+	@NotBlank(message = "{terrain.not.blank}")
 	private String terrain;
+	
 	private int films;
 
 	public Planet() {

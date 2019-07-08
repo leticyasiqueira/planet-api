@@ -1,30 +1,33 @@
 package com.lsiqueira.planet.service;
 
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.BadRequestException;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 
 import com.lsiqueira.planet.client.RequestWrapper;
 import com.lsiqueira.planet.client.Swapi;
+import com.lsiqueira.planet.exception.PlanetBadRequestException;
 
-@Service
 public class PlanetService {
-	
 
-	public void validPlanet(String name) throws Exception,NotFoundException {
-		
+	public int searchFilms(String name) throws Exception, BadRequestException {
+
+		int films;
 		Swapi api = new Swapi();
+
 		ResponseEntity<RequestWrapper> wrapper = api.getPlanetByName(name);
-		
+
 		if (wrapper.getBody().getResults().size() == 0) {
+
+			throw new PlanetBadRequestException("O planeta " + name + " é inválido para o mundo do StarWar!");
 			
-			throw new NotFoundException("O planeta não existe no mundo Star War", (Response) ResponseEntity.notFound());
+		} else {
+			
+			films = wrapper.getBody().getResults().get(0).getFilms().size();
 		}
-		
-	
+
+		return films;
+
 	}
-	
-	
+
 }

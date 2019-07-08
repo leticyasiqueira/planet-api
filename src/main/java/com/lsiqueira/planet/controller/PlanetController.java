@@ -3,6 +3,8 @@ package com.lsiqueira.planet.controller;
 import java.net.URI;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,25 +22,31 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.lsiqueira.planet.entity.Planet;
+import com.lsiqueira.planet.exception.PlanetBadRequestException;
+import com.lsiqueira.planet.exception.PlanetNotFoundException;
 import com.lsiqueira.planet.repository.PlanetRepository;
 import com.lsiqueira.planet.service.PlanetService;
 
 @RestController
 @RequestMapping("/planets")
 public class PlanetController {
-	
+
 	@Autowired
 	private PlanetRepository planetRepository;
-	
-	@Autowired
-	private PlanetService planetService;
 
-	
 	@PostMapping
-	public ResponseEntity<Planet> createPlanet(@RequestBody Planet planet) throws Exception {
-		
-		planetService.validPlanet(planet.getName());
-		
+	public ResponseEntity<Planet> createPlanet(@RequestBody @Valid Planet planet) throws Exception {
+
+		Optional<Planet> planetName = planetRepository.findByName(planet.getName());
+
+		if (planetName.isPresent()) {
+			throw new PlanetBadRequestException("O planeta " + planet.getName() + " já está cadastrado!");
+		}
+
+		//PlanetService planetService = new PlanetService();
+		//int film = planetService.searchFilms(planet.getName());
+
+		//planet.setFilms(film);
 		Planet savedPlanet = planetRepository.save(planet);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -47,29 +55,57 @@ public class PlanetController {
 		return ResponseEntity.created(location).build();
 
 	}
-	
+
 	@GetMapping()
-	public ResponseEntity<Iterable<Planet>> getListPlanet(
-			@RequestParam(name = "pag", required = false, defaultValue = "0") int pag,
-			@RequestParam(name = "size", required = false, defaultValue = "5") int size) {
-		
+	public ResponseEntity<?> getPlanet(@RequestParam(name = "pag", required = false, defaultValue = "0") int pag,
+			@RequestParam(name = "size", required = false, defaultValue = "5") int size,
+			@RequestParam(name = "name", required = false) String name) {
+
 		Pageable pageable = PageRequest.of(pag, size, Sort.Direction.DESC, "name");
-		
-		return new ResponseEntity<Iterable<Planet>>(planetRepository.findAll(pageable), HttpStatus.OK);
+
+		if (name != null) {
+
+			Optional<Planet> planet = planetRepository.findByName(name);
+
+			if (!planet.isPresent()) {
+				throw new PlanetNotFoundException("O planeta " + name + " não foi encontrado!");
+			}
+
+			return new ResponseEntity<Optional<Planet>>(planet, HttpStatus.OK);
+
+		} else {
+
+			return new ResponseEntity<Iterable<Planet>>(planetRepository.findAll(pageable), HttpStatus.OK);
+		}
 
 	}
 
 	@GetMapping("{id}")
-	public Planet getPlanet(@PathVariable long id) {
-		Optional<Planet> planet = planetRepository.findById(id);
-		 
+	public Planet getPlanetId(@PathVariable long id) {
+
+		Optional<Planet> planet = validPlanetID(id);
+
 		return planet.get();
 	}
-	
+
 	@DeleteMapping("{id}")
-	public ResponseEntity<Planet> delete(@PathVariable("id") long id){
+	public ResponseEntity<Planet> delete(@PathVariable("id") long id) {
+
+		validPlanetID(id);
 		planetRepository.deleteById(id);
+
 		return ResponseEntity.noContent().build();
 	}
-	
+
+	private Optional<Planet> validPlanetID(long id) {
+
+		Optional<Planet> planet = planetRepository.findById(id);
+
+		if (!planet.isPresent()) {
+			throw new PlanetNotFoundException("Id não encontrado!");
+		}
+
+		return planet;
+	}
+
 }
