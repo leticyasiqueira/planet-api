@@ -5,7 +5,7 @@ O projeto tarta-se de uma API REST que permite o cadastro, a busca e a remoção
 ## Tecnologias Utilizadas no Projeto
 * Linguagem de programação: Java
 * Framework: Spring boot
-* Banco de dados: H2 embedded
+* Banco de dados: H2 
 
 ## Recursos disponíveis para acesso via API:
 * [**Info**](#reference/recursos/info)
@@ -24,9 +24,9 @@ Requisições para a API devem seguir os padrões:
 
 | Código | Descrição |
 |---|---|
-| `200` | Requisição executada com sucesso (success).|
-| `400` | Erros de validação ou os campos informados não existem.|
-| `404` | Registro pesquisado não encontrado (Not found).|
+| `200` | Requisição executada com sucesso (Success).|
+| `400` | Erros de validação ou os campos informados não existem (BadRequest).|
+| `404` | Registro pesquisado não encontrado (NotFound).|
 
 
 ## Listar (Sem o ID)
@@ -165,4 +165,8 @@ As ações de `listar` permitem o envio dos seguintes parâmetros:
 			  "path": "/planets/4"
 			}
 		   
-        
+
+## Contatos
+
+Leticya Siqueira – [@Linkedin](https://www.linkedin.com/in/leticya-siqueira/) – leticya.siqueira@gmail.com
+![](header.png)        
