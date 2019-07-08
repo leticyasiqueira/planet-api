@@ -1,6 +1,6 @@
 # Planets-api
 
-O projeto tarta-se de uma API REST que permite o cadastro, a busca e a exclusão de planetas referente ao mundo do StarWars.
+O projeto tarta-se de uma API REST que permite o cadastro, a busca e a remoção de planetas referente ao mundo do StarWars.
 
 ## Tecnologias Utilizadas no Projeto
 * Linguagem de programação: Java
@@ -18,7 +18,7 @@ Requisições para a API devem seguir os padrões:
 |-----|-----|
 | `GET`     | Retorna informações de um ou mais registros. |
 | `POST`    | Utilizado para criar um novo registro. |
-| `DELETE ` | Utilizado pata remover um registro. |
+| `DELETE ` | Utilizado para remover um registro. |
 
 ## Principais Respostas
 
@@ -61,7 +61,7 @@ As ações de `listar` permitem o envio dos seguintes parâmetros:
 
 # Planets [/planets]
 
-É disponibilizado os recursos para deletar, buscar e inserir informações sobre os planetas no mundo do StarWars.
+É disponibilizado os recursos para remoção, busca e inserção de informações sobre os planetas no mundo do StarWars.
 
 ### Novo (Create) [POST]
 
@@ -82,10 +82,21 @@ As ações de `listar` permitem o envio dos seguintes parâmetros:
 + Response 201 (application/json)
     + header
            Location: Caminho para o recurso criado.
+
+
++ Response 400 (application/json)
+  Quando existe erro de validação ou os campos informados não existem.
+    + Body
+            {
+			  "status": 400,
+			  "error": "Bad Request",
+			  "message": "O planeta Alderaan já está cadastrado!",
+			  "path": "/planets"
+			}
            
            
            
-### Buscar por ID (Read) [GET /planets/{id}]
+### Listar por ID (Read) [GET /planets/{id}]
 
 + Parameters
     + id (required, number, `1`) ... ID do planeta
@@ -104,11 +115,65 @@ As ações de `listar` permitem o envio dos seguintes parâmetros:
 + Response 404 (application/json)
   Quando o registro não for encontrado.
     + Body
-
-           {
-			  "timestamp": "2019-07-08T19:17:12.758+0000",
+            {
 			  "status": 404,
 			  "error": "Not Found",
 			  "message": "Id não encontrado!",
 			  "path": "/planets/4"
-			}        
+			}
+
+
+### Listar (List) [GET]
+
++ Request (application/json)
+
++ Response 200 (application/json)
+	 + Body
+            {
+              "name": "Alderaan",
+              "climate": "temperate",
+              "terrain": "grasslands",
+              "films": 3
+            } 
+
++ Response 404 (application/json)
+	 + Body
+           {
+			 "timestamp": "2019-07-08T19:49:58.311+0000",
+			 "status": 404,
+			 "error": "Not Found",
+			 "message": "O planeta Alderaa não foi encontrado!",
+			 "path": "/planets"
+		   }
+		   
+
+
+
+### Remover (Delete) [DELETE  /planets/{id}]
+
++ Request (application/json)
+
++ Response 204 (application/json)
+	No content.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "code": "200",
+                "msg": "Venda com código 317 excluída com sucesso!",
+                "obs": null,
+                "fields": null
+            }
+ 
++ Response 404 (application/json)
+  Quando o registro não for encontrado.
+    + Body
+            {
+			  "status": 404,
+			  "error": "Not Found",
+			  "message": "Id não encontrado!",
+			  "path": "/planets/4"
+			}
+		   
+        
