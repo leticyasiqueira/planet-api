@@ -8,8 +8,8 @@ O projeto tarta-se de uma API REST que permite o cadastro, a busca e a exclusão
 * Banco de dados: H2 embedded
 
 ## Recursos disponíveis para acesso via API:
-* [**Informação**](#reference/recursos/info)
-* [**Planetas**](#reference/recursos/planets)
+* [**Info**](#reference/recursos/info)
+* [**Planets**](#reference/recursos/planets)
 
 ## Métodos
 Requisições para a API devem seguir os padrões:
@@ -39,3 +39,46 @@ As ações de `listar` permitem o envio dos seguintes parâmetros:
 | `size` | Informa quantidade retornada por pagina (default: 5). |
 
 
+# Group Recursos
+
+# Info [/info]
+
+É disponibilizado a versão atual da API.
+
+### Listar (List) [GET]
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+           {
+			  "versao": "1.0",
+			  "nome": "planets-api"
+			}
+
+			
+
+
+# Planets [/planets]
+
+É disponibilizado os recursos para deletar, buscar e inserir informações sobre os planetas no mundo do StarWars.
+
+### Novo (Create) [POST]
+
++ Attributes (object)
+
+    + name: nome do planeta (string, required) 
+    + climate: clima do planeta (string, required) 
+    + terrain: terreno do planeta (string, required)
+   
++ Request (application/json)
+    + Body
+            {
+              "name": "Alderaan",
+              "climate": "temperate",
+              "terrain": "grasslands"
+            }
+
++ Response 201 (application/json)
+    + header
+           Location: Caminho para o recurso criado.
