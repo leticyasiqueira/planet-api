@@ -170,6 +170,6 @@ As ações de `listar` permitem o envio dos seguintes parâmetros:
 
 Leticya Siqueira – [@Linkedin](https://www.linkedin.com/in/leticya-siqueira/) – leticya.siqueira@gmail.com  <br />
 May the force be with you!
-<div align-items: center>
+<div  align="center">
   <img src="https://pa1.narvii.com/6143/bd17033c710a8b952977213e8c1eba931d1f09b9_hq.gif"/> 
 </div>
