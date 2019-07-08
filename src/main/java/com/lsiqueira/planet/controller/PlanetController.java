@@ -37,16 +37,15 @@ public class PlanetController {
 	@PostMapping
 	public ResponseEntity<Planet> createPlanet(@RequestBody @Valid Planet planet) throws Exception {
 
-		Optional<Planet> planetName = planetRepository.findByName(planet.getName());
+		Optional<Planet> searchPlanetName = planetRepository.findByName(planet.getName());
 
-		if (planetName.isPresent()) {
+		if (searchPlanetName.isPresent()) {
 			throw new PlanetBadRequestException("O planeta " + planet.getName() + " já está cadastrado!");
 		}
 
-		//PlanetService planetService = new PlanetService();
-		//int film = planetService.searchFilms(planet.getName());
-
-		//planet.setFilms(film);
+		PlanetService planetService = new PlanetService();
+		int film = planetService.searchFilms(planet.getName());
+		planet.setFilms(film);
 		Planet savedPlanet = planetRepository.save(planet);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -99,13 +98,13 @@ public class PlanetController {
 
 	private Optional<Planet> validPlanetID(long id) {
 
-		Optional<Planet> planet = planetRepository.findById(id);
+		Optional<Planet> searchPlanetID = planetRepository.findById(id);
 
-		if (!planet.isPresent()) {
+		if (!searchPlanetID.isPresent()) {
 			throw new PlanetNotFoundException("Id não encontrado!");
 		}
 
-		return planet;
+		return searchPlanetID;
 	}
 
 }
