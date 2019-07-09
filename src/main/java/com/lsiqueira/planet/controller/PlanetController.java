@@ -35,7 +35,7 @@ public class PlanetController {
 	private PlanetRepository planetRepository;
 
 	@PostMapping
-	public ResponseEntity<Planet> createPlanet(@RequestBody @Valid Planet planet) throws Exception {
+	public ResponseEntity<Void> createPlanet(@RequestBody @Valid Planet planet) throws Exception {
 
 		Optional<Planet> searchPlanetName = planetRepository.findByName(planet.getName());
 
@@ -43,9 +43,9 @@ public class PlanetController {
 			throw new PlanetBadRequestException("O planeta " + planet.getName() + " já está cadastrado!");
 		}
 
-		PlanetService planetService = new PlanetService();
-		int film = planetService.searchFilms(planet.getName());
-		planet.setFilms(film);
+		//PlanetService planetService = new PlanetService();
+		//int film = planetService.searchFilms(planet.getName());
+		//planet.setFilms(film);
 		Planet savedPlanet = planetRepository.save(planet);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
