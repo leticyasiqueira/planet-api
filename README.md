@@ -5,6 +5,7 @@ O projeto tarta-se de uma API REST que permite o cadastro, a busca e a remoção
 ## Tecnologias Utilizadas no Projeto
 * Linguagem de programação: Java
 * Framework: Spring boot
+* Testes com MockMvc
 * Banco de dados: H2 
 
 ## Recursos disponíveis para acesso via API:
