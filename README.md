@@ -1,6 +1,6 @@
 # Planets-api
 
-O projeto tarta-se de uma API REST que permite o cadastro, a busca e a remoção de planetas referente ao mundo do StarWars.
+O projeto trata-se de uma API REST que permite o cadastro, a busca e a remoção de planetas referente ao mundo do StarWars.
 
 ## Tecnologias Utilizadas no Projeto
 * Linguagem de programação: Java
