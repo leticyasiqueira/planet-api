@@ -7,6 +7,18 @@ O projeto tarta-se de uma API REST que permite o cadastro, a busca e a remoção
 * Framework: Spring boot
 * Banco de dados: H2 
 
+##Acesso Externo
+Informações como número de aparições em filmes também são possíveis de verificar na Consulta a um determinado planeta, 
+esta informação é recuperada através de integração com a API swapi.co/api.
+
+##Comandos Importantes
+
+| Comandos  | Descrição |
+|-----------|-----------|
+| `mvn install`         | Instalação. |
+| `mvn verify`          | Testes.     |
+| `mvn spring-boot:run` | Running.    |
+
 ## Recursos disponíveis para acesso via API:
 * [**Info**](#reference/recursos/info)
 * [**Planets**](#reference/recursos/planets)
@@ -173,3 +185,4 @@ May the force be with you!
 <div  align="center">
   <img src="https://pa1.narvii.com/6143/bd17033c710a8b952977213e8c1eba931d1f09b9_hq.gif"/> 
 </div>
+
