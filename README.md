@@ -10,7 +10,7 @@ O projeto trata-se de uma API REST que permite o cadastro, a busca e a remoção
 
 ## Acesso Externo
 Informações como número de aparições em filmes também são possíveis de verificar na Consulta a um determinado planeta, 
-esta informação é recuperada através de integração com a API swapi.co/api.
+esta informação é recuperada através de integração com a API [@swapi](http://swapi.co/api/) 
 
 ## Comandos Importantes 
 
