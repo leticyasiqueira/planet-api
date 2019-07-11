@@ -48,7 +48,7 @@ As ações de `listar` permitem o envio dos seguintes parâmetros:
 | Parâmetro | Descrição |
 |---|---|
 | `name` | Filtra pelo nome do planeta. |
-| `page` | Informa qual página deve ser retornada (default: 0). |
+| `pag` | Informa qual página deve ser retornada (default: 0). |
 | `size` | Informa quantidade retornada por pagina (default: 5). |
 
 
