@@ -25,11 +25,11 @@ import com.lsiqueira.planet.entity.Planet;
 import com.lsiqueira.planet.exception.PlanetBadRequestException;
 import com.lsiqueira.planet.exception.PlanetNotFoundException;
 import com.lsiqueira.planet.repository.PlanetRepository;
-import com.lsiqueira.planet.service.PlanetService;
 
 @RestController
 @RequestMapping("/planets")
 public class PlanetController {
+	
 
 	@Autowired
 	private PlanetRepository planetRepository;
@@ -43,9 +43,9 @@ public class PlanetController {
 			throw new PlanetBadRequestException("O planeta " + planet.getName() + " já está cadastrado!");
 		}
 
-		PlanetService planetService = new PlanetService();
-		int film = planetService.searchFilms(planet.getName());
-		planet.setFilms(film);
+//		PlanetService planetService = new PlanetService();
+//		int film = planetService.searchFilms(planet.getName());
+//		planet.setFilms(film);
 		Planet savedPlanet = planetRepository.save(planet);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -106,5 +106,5 @@ public class PlanetController {
 
 		return searchPlanetID;
 	}
-
+	
 }
